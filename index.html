@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo lo que no te di</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .neon-text {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+            margin-bottom: 30px;
+        }
+
+        /* Ramo */
+        .bouquet { font-size: 80px; margin: 20px 0; }
+
+        /* Cajas 3D */
+        .gift-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 50px; }
+        .gift-box {
+            width: 100px; height: 100px;
+            background: linear-gradient(45deg, #333, #000);
+            border: 2px solid #00ffcc;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; position: relative; transition: 0.3s;
+        }
+        .gift-box:hover { transform: translateY(-10px); box-shadow: 0 0 20px #00ffcc; }
+        .text-inside { display: none; color: #fff; font-weight: bold; padding: 10px; }
+
+        /* Libro */
+        .book { width: 300px; height: 400px; margin: 0 auto; background: #222; border: 2px solid #ffcc00; position: relative; }
+        .page { padding: 20px; display: none; }
+        .page.active { display: block; }
+        
+        /* Tesoro Final */
+        .final-msg { margin-top: 50px; padding: 30px; border-top: 2px solid #ff00ff; }
+    </style>
+</head>
+<body>
+
+    <h1 class="neon-text">Todo lo que no te di está aquí</h1>
+    <div class="bouquet">💐</div>
+
+    <h2>Descubre tus sorpresas</h2>
+    <div class="gift-container">
+        <div class="gift-box" onclick="showMsg(0)">🎁<div class="text-inside">¡Eres mi persona favorita!</div></div>
+        <div class="gift-box" onclick="showMsg(1)">🎁<div class="text-inside">Tu sonrisa ilumina todo.</div></div>
+        <div class="gift-box" onclick="showMsg(2)">🎁<div class="text-inside">Gracias por existir.</div></div>
+    </div>
+
+    <h2>Pasa las páginas</h2>
+    <div class="book" id="book" onclick="nextPage()">
+        <div class="page active"><h3>Página 1</h3><p>Flores digitales para ti 🌸</p></div>
+        <div class="page"><h3>Página 2</h3><p>Corazones eternos 💖</p></div>
+        <div class="page"><h3>Página 3</h3><p>Todo lo que no te di está aquí.</p></div>
+    </div>
+
+    <div class="final-msg">
+        <p>Este espacio fue creado con amor, solo para ti.</p>
+    </div>
+
+    <script>
+        function showMsg(index) {
+            const boxes = document.querySelectorAll('.text-inside');
+            boxes[index].style.display = 'block';
+        }
+
+        let currentPage = 0;
+        function nextPage() {
+            const pages = document.querySelectorAll('.page');
+            pages[currentPage].classList.remove('active');
+            currentPage = (currentPage + 1) % pages.length;
+            pages[currentPage].classList.add('active');
+        }
+    </script>
+</body>
+</html>
